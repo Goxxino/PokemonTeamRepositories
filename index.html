@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontier Elite | SoulSilver</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://img.icons8.com/color/48/pokeball.png" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h1>BATTLE FRONTIER ELITE</h1>
+
+    <div class="team-container">
+        <div class="card">
+            <img src="https://play.pokemonshowdown.com/sprites/ani/garchomp.gif" class="sprite">
+            <div class="name">GARCHOMP</div>
+            <div class="ability">Sabbiavelo (Sand Veil)</div>
+            <div class="moves-grid">
+                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/8/80/Dragon_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/1/14/Physical_icon_40.png" class="type-tag"> Oltraggio</div>
+                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/8/8f/Ground_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/1/14/Physical_icon_40.png" class="type-tag"> Terremoto</div>
+            </div>
+            <canvas id="chartGarchomp"></canvas>
+        </div>
+
+        <div class="card">
+            <img src="https://play.pokemonshowdown.com/sprites/ani/starmie.gif" class="sprite" style="height: 75px; margin-top: 15px;">
+            <div class="name">STARMIE</div>
+            <div class="ability">Alternacura (Natural Cure)</div>
+            <div class="moves-grid">
+                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/e/e5/Water_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/0/03/Special_icon_40.png" class="type-tag"> Surf</div>
+                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/3/3d/Ice_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/0/03/Special_icon_40.png" class="type-tag"> Geloraggio</div>
+            </div>
+            <canvas id="chartStarmie"></canvas>
+        </div>
+
+        <div class="card">
+            <img src="https://play.pokemonshowdown.com/sprites/ani/metagross.gif" class="sprite">
+            <div class="name">METAGROSS</div>
+            <div class="ability">Corpochiaro (Clear Body)</div>
+            <div class="moves-grid">
+                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/c/c9/Steel_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/1/14/Physical_icon_40.png" class="type-tag"> Meteorpugno</div>
+                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/c/c9/Steel_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/1/14/Physical_icon_40.png" class="type-tag"> Pugnoscarica</div>
+            </div>
+            <canvas id="chartMetagross"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
