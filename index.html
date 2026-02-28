@@ -5,45 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frontier Elite | SoulSilver</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="https://img.icons8.com/color/48/pokeball.png" type="image/png">
+    <link rel="icon" href="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <h1>BATTLE FRONTIER ELITE</h1>
+    <h1>BATTLE FRONTIER ELITE TEAM</h1>
+
+    <div class="intro-text">
+        <p>Il team che ho creato è stato pensato per poter battere l'asso della Torre Lotta, Palmer, e ottenere facilmente dei BP. La sfida è suddivisa in 3 serie da 7 lotte ciascuna, alla fine di queste si affronterà l'asso. Con questo team non ho riscontrato problemi. Dopo averlo battuto, si perde di proposito e si rifanno le 21 battaglie.</p>
+        <img src="https://play.pokemonshowdown.com/sprites/trainers/palmer.png" class="trainer-sprite" alt="Palmer">
+    </div>
 
     <div class="team-container">
-        <div class="card">
-            <img src="https://play.pokemonshowdown.com/sprites/ani/garchomp.gif" class="sprite">
+        <div class="card type-ground">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/445.gif" class="sprite">
+            <div class="types-container">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/16.png" class="type-badge" alt="Drago">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/5.png" class="type-badge" alt="Terra">
+            </div>
             <div class="name">GARCHOMP</div>
             <div class="ability">Sabbiavelo (Sand Veil)</div>
-            <div class="moves-grid">
-                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/8/80/Dragon_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/1/14/Physical_icon_40.png" class="type-tag"> Oltraggio</div>
-                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/8/8f/Ground_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/1/14/Physical_icon_40.png" class="type-tag"> Terremoto</div>
+            <div class="nature">Natura: Allegra</div>
+            <div class="held-item">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/focus-sash.png" class="item-icon">
+                <span>Sciarpa Scelta (Choice Scarf)</span>
             </div>
-            <canvas id="chartGarchomp"></canvas>
+            <div class="moves-grid">
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/5.png" class="type-icon" alt="Terra"> <img src="physical.png" class="type-tag"> <span>Terremoto</span> <span class="pp">16 PP</span></div>
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/1.png" class="type-icon" alt="Normale"> <img src="status.png" class="type-tag"> <span>Danzaspada</span> <span class="pp">48 PP</span></div>
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/16.png" class="type-icon" alt="Drago"> <img src="physical.png" class="type-tag"> <span>Oltraggio</span> <span class="pp">24 PP</span></div>
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/10.png" class="type-icon" alt="Fuoco"> <img src="physical.png" class="type-tag"> <span>Rogodenti</span> <span class="pp">24 PP</span></div>
+            </div>
+            <div class="chart-container">
+                <canvas id="chartGarchomp"></canvas>
+            </div>
+            <div class="stats-grid-container" id="statsGarchomp"></div>
         </div>
 
-        <div class="card">
-            <img src="https://play.pokemonshowdown.com/sprites/ani/starmie.gif" class="sprite" style="height: 75px; margin-top: 15px;">
+        <div class="card type-water">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/121.gif" class="sprite" style="height: 75px; margin-top: 15px;">
+            <div class="types-container">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/11.png" class="type-badge" alt="Acqua">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/14.png" class="type-badge" alt="Psico">
+            </div>
             <div class="name">STARMIE</div>
             <div class="ability">Alternacura (Natural Cure)</div>
-            <div class="moves-grid">
-                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/e/e5/Water_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/0/03/Special_icon_40.png" class="type-tag"> Surf</div>
-                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/3/3d/Ice_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/0/03/Special_icon_40.png" class="type-tag"> Geloraggio</div>
+            <div class="nature">Natura: Timida</div>
+            <div class="held-item">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/life-orb.png" class="item-icon">
+                <span>Sfera Vita (Life Orb)</span>
             </div>
-            <canvas id="chartStarmie"></canvas>
+            <div class="moves-grid">
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/14.png" class="type-icon" alt="Psichico"> <img src="special.png" class="type-tag"> <span>Psichico</span> <span class="pp">16 PP</span></div>
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/15.png" class="type-icon" alt="Ghiaccio"> <img src="special.png" class="type-tag"> <span>Geloraggio</span> <span class="pp">16 PP</span></div>
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/13.png" class="type-icon" alt="Elettro"> <img src="special.png" class="type-tag"> <span>Fulmine</span> <span class="pp">24 PP</span></div>
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/11.png" class="type-icon" alt="Acqua"> <img src="special.png" class="type-tag"> <span>Surf</span> <span class="pp">24 PP</span></div>
+            </div>
+            <div class="chart-container">
+                <canvas id="chartStarmie"></canvas>
+            </div>
+            <div class="stats-grid-container" id="statsStarmie"></div>
         </div>
 
-        <div class="card">
-            <img src="https://play.pokemonshowdown.com/sprites/ani/metagross.gif" class="sprite">
+        <div class="card type-steel">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/376.gif" class="sprite">
+            <div class="types-container">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/9.png" class="type-badge" alt="Acciaio">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/14.png" class="type-badge" alt="Psico">
+            </div>
             <div class="name">METAGROSS</div>
             <div class="ability">Corpochiaro (Clear Body)</div>
-            <div class="moves-grid">
-                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/c/c9/Steel_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/1/14/Physical_icon_40.png" class="type-tag"> Meteorpugno</div>
-                <div class="move-row"><img src="https://archives.bulbagarden.net/media/upload/c/c9/Steel_icon_40.png" class="type-tag"> <img src="https://archives.bulbagarden.net/media/upload/1/14/Physical_icon_40.png" class="type-tag"> Pugnoscarica</div>
+            <div class="nature">Natura: Furba</div>
+            <div class="held-item">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/choice-band.png" class="item-icon">
+                <span>Fascia Scelta (Choice Band)</span>
             </div>
-            <canvas id="chartMetagross"></canvas>
+            <div class="moves-grid">
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/9.png" class="type-icon" alt="Acciaio"> <img src="physical.png" class="type-tag"> <span>Pugnoscarica</span> <span class="pp">48 PP</span></div>
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/14.png" class="type-icon" alt="Psichico"> <img src="physical.png" class="type-tag"> <span>Cozzata Zen</span> <span class="pp">24 PP</span></div>
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/5.png" class="type-icon" alt="Terra"> <img src="physical.png" class="type-tag"> <span>Terremoto</span> <span class="pp">16 PP</span></div>
+                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/9.png" class="type-icon" alt="Acciaio"> <img src="physical.png" class="type-tag"> <span>Meteorpugno</span> <span class="pp">16 PP</span></div>
+            </div>
+            <div class="chart-container">
+                <canvas id="chartMetagross"></canvas>
+            </div>
+            <div class="stats-grid-container" id="statsMetagross"></div>
         </div>
     </div>
 

@@ -1,20 +1,69 @@
 body {
-    background: #0d0d0d;
+    background: linear-gradient(-45deg, #050505, #1a1a1a, #0f172a, #1c1c1c);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    box-sizing: border-box;
     color: #f0f0f0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
     margin: 0;
+    cursor: crosshair; /* Cursore digitale */
+}
+
+/* Scanlines Retro (CRT Effect) */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 h1 {
     letter-spacing: 6px;
-    font-weight: 200;
+    font-weight: 800;
     margin-bottom: 50px;
-    border-bottom: 1px solid #333;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(to right, #0d0d0d, #ffcb05, #3c5aa6, #0d0d0d) 1;
     padding-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 203, 5, 0.3);
+}
+
+.intro-text {
+    max-width: 800px;
+    text-align: center;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 4px solid #ffcb05;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.intro-text p {
+    margin: 0;
+}
+
+.trainer-sprite {
+    height: 96px;
+    display: block;
+    margin: 15px auto;
+    filter: drop-shadow(0 0 3px rgba(255, 203, 5, 0.6)); /* Glow dorato */
 }
 
 .team-container {
@@ -25,26 +74,75 @@ h1 {
     width: 100%;
 }
 
+/* Ammorbidiamo la card e le ombre */
 .card {
-    background: #161616;
-    border: 1px solid #2a2a2a;
-    border-radius: 24px;
-    width: 320px;
-    padding: 30px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-    transition: 0.3s ease;
+    background: rgba(26, 26, 26, 0.6); /* Più trasparente per glassmorphism */
+    backdrop-filter: blur(10px); /* Effetto vetro smerigliato */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Bordo sottile semitrasparente */
+    border-radius: 30px;
+    width: 420px; /* Aumentato a 420px */
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
 }
 
+/* Bordi colorati in base al tipo (Aesthetic touch) */
+.card.type-ground { border-top: 4px solid #f08030; }
+.card.type-water { border-top: 4px solid #6890f0; }
+.card.type-steel { border-top: 4px solid #b8b8d0; }
+
+/* Sfondo sfumato leggero dietro la card */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 150px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.03), transparent);
+    pointer-events: none;
+}
+
+/* Interattività: Effetto "3D Tilt" e Glow generico */
 .card:hover {
     transform: translateY(-10px);
-    border-color: #444;
+}
+
+/* Glow Dinamico (Neon) specifico per tipo */
+.card.type-ground:hover {
+    box-shadow: 0 0 40px rgba(240, 128, 48, 0.4);
+    border-color: #f08030;
+}
+
+.card.type-water:hover {
+    box-shadow: 0 0 40px rgba(104, 144, 240, 0.4);
+    border-color: #6890f0;
+}
+
+.card.type-steel:hover {
+    box-shadow: 0 0 40px rgba(184, 184, 208, 0.4);
+    border-color: #b8b8d0;
 }
 
 .sprite {
     height: 90px;
     display: block;
     margin: 0 auto 20px;
-    image-rendering: pixelated;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.4));
+    -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(255,255,255,0.1)); /* Riflesso a specchio */
+}
+
+.types-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 6px;
+    margin-bottom: 15px;
+    margin-top: -10px;
+}
+
+.type-badge {
+    height: 16px;
 }
 
 .name {
@@ -53,14 +151,43 @@ h1 {
     font-weight: bold;
     color: #ffcb05;
     letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(255, 203, 5, 0.6); /* Testo Neon */
 }
 
 .ability {
+    text-align: center;
+    font-family: 'Press Start 2P', cursive; /* Font pixelato */
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+.nature {
+    text-align: center;
+    font-family: 'Press Start 2P', cursive; /* Font pixelato */
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+.held-item {
     text-align: center;
     font-size: 0.7rem;
     text-transform: uppercase;
     opacity: 0.5;
     margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.item-icon {
+    height: 24px;
+    width: 24px;
+    image-rendering: pixelated;
 }
 
 .moves-grid {
@@ -69,19 +196,159 @@ h1 {
     margin-bottom: 30px;
 }
 
+/* Le righe delle mosse diventano più "soft" */
 .move-row {
-    background: #1f1f1f;
-    padding: 8px 15px;
-    border-radius: 10px;
+    background: #252525;
+    padding: 10px 15px;
+    border-radius: 15px; /* Arrotondate invece che spigolose */
+    border: none; /* Rimuoviamo il bordo per un look più pulito */
+    font-size: 0.85rem;
+    color: #ddd;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
-    font-size: 0.9rem;
-    border: 1px solid #252525;
+}
+
+.move-row .pp {
+    margin-left: auto;
+    font-size: 0.75rem;
+    font-family: 'Press Start 2P', cursive; /* Font pixelato */
+    color: #999;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.type-icon {
+    height: 14px;
+    width: 45px;
+    object-fit: contain;
 }
 
 .type-tag {
     width: 35px;
+}
+
+/* Contenitore grafico: meno "incassato", più integrato */
+.chart-container {
+    position: relative;
+    height: 240px; /* Aumentato da 180px */
+    width: 100%;
+    background: rgba(255,255,255,0.03); /* Sfondo leggerissimo */
+    border-radius: 20px;
+    padding: 10px 40px 10px 10px; /* Aumentato il padding destro a 40px */
+    margin-top: 10px;
+    box-sizing: border-box; /* Fondamentale per non far sbordare */
+}
+
+/* Header delle stats più elegante */
+.chart-header.main {
+    display: flex;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    margin-bottom: 8px;
+    padding: 0 10px;
+    white-space: pre-line; /* consente <br> a funzionare */
+}
+
+/* Header IV/EV più chiaro */
+.chart-header.iv-ev {
+    display: flex;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #555; /* Grigio scuro per non distrarre */
+    margin-top: 20px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* Contenitore tabella IV/EV */
+.stats-grid-container {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 15px;
+    overflow: hidden;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 60px 1fr 1fr;
+    gap: 0;
+    margin-bottom: 15px;
+}
+
+.stats-grid-header {
+    display: contents;
+}
+
+.stats-grid-header > div {
+    padding: 8px;
+    background: rgba(255,255,255,0.08);
+    font-family: 'Press Start 2P', cursive; /* Font pixelato */
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    text-align: center;
+}
+
+.stats-grid-row {
+    display: contents;
+}
+
+.stats-grid-cell {
+    padding: 10px 8px;
+    background: transparent;
+    border-bottom: none;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.stats-grid-cell.label {
+    font-weight: 600;
+    color: #ccc;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stats-grid-cell.iv {
+    color: #aaa;
+    font-weight: 500;
+}
+
+.stats-grid-cell.ev {
+    flex-direction: column;
+    gap: 4px;
+    font-weight: 600;
+}
+
+.ev-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.ev-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease;
 }
 
 /* Mobile check */
