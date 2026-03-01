@@ -13,6 +13,11 @@
 </head>
 <body>
 
+    <div class="bg-blobs">
+        <div class="blob color-1"></div>
+        <div class="blob color-2"></div>
+    </div>
+
     <h1>BATTLE FRONTIER ELITE TEAM</h1>
 
     <div class="intro-text">
@@ -35,15 +40,51 @@
                 <span>Sciarpa Scelta (Choice Scarf)</span>
             </div>
             <div class="moves-grid">
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/5.png" class="type-icon" alt="Terra"> <img src="physical.png" class="type-tag"> <span>Terremoto</span> <span class="pp">16 PP</span></div>
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/1.png" class="type-icon" alt="Normale"> <img src="status.png" class="type-tag"> <span>Danzaspada</span> <span class="pp">48 PP</span></div>
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/16.png" class="type-icon" alt="Drago"> <img src="physical.png" class="type-tag"> <span>Oltraggio</span> <span class="pp">24 PP</span></div>
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/10.png" class="type-icon" alt="Fuoco"> <img src="physical.png" class="type-tag"> <span>Rogodenti</span> <span class="pp">24 PP</span></div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/5.png" class="type-icon" alt="Terra"> <img src="physical.png" class="type-tag"> <span>Terremoto</span> <span class="pp">16 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Terremoto</div>
+                    <div class="data-content"><p>MT 26. Ottenuta in Smeraldo (Grotta dei Tempi) e duplicata col glitch della Torre Lotta. Metodo più veloce: Clonazione infinita.</p></div>
+                </div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/1.png" class="type-icon" alt="Normale"> <img src="status.png" class="type-tag"> <span>Danzaspada</span> <span class="pp">48 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Danzaspada</div>
+                    <div class="data-content"><p>MT 75. Comprata al Centro Commerciale di Rupepoli (Platino) per 2000$. Metodo più veloce: Acquisto diretto.</p></div>
+                </div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/16.png" class="type-icon" alt="Drago"> <img src="physical.png" class="type-tag"> <span>Oltraggio</span> <span class="pp">24 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Oltraggio</div>
+                    <div class="data-content"><p>Insegnamosse. Si impara alla Frontiera Lotta (Platino/HGSS). Costa 48 BP. Metodo più veloce: Farming Palmer (Torre Lotta).</p></div>
+                </div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/10.png" class="type-icon" alt="Fuoco"> <img src="physical.png" class="type-tag"> <span>Rogodenti</span> <span class="pp">24 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Rogodenti</div>
+                    <div class="data-content"><p>Livello 1 / Ricordamosse. Vai a Ebanopoli (HGSS) o Pratopoli (Platino) con una Squama Cuore.</p></div>
+                </div>
             </div>
             <div class="chart-container">
                 <canvas id="chartGarchomp"></canvas>
             </div>
             <div class="stats-grid-container" id="statsGarchomp"></div>
+            <div class="recommendation-container">
+                <div class="rec-row">
+                    <span class="rec-label">Natura consigliata</span>
+                    <span class="rec-value">Allegra</span>
+                </div>
+                <div class="rec-row">
+                    <span class="rec-label">IV prioritari</span>
+                    <span class="rec-value">Velocità, Attacco</span>
+                </div>
+            </div>
+            <div class="location-box" data-pokemon="garchomp">Dove trovarli?</div>
+            <div class="location-data" style="display: none;">
+                <div class="data-title">Gible (Pre-evoluzione di Garchomp)</div>
+                <div class="data-content">
+                    <p class="platinum"><strong>Gioco:</strong> <span style="color: #A0C0D0;">Pokémon Platino</span></p>
+                    <p class="platinum"><strong>Luogo:</strong> Grotta Labirinto (Wayward Cave) - Ingresso Segreto.</p>
+                    <p class="platinum"><strong>Posizione:</strong> Sotto la Pista Ciclabile (Percorso 206).</p>
+                    <p class="platinum"><strong>Requisiti:</strong> MN Forza per spostare i massi all'interno.</p>
+                </div>
+            </div>
         </div>
 
         <div class="card type-water">
@@ -60,15 +101,54 @@
                 <span>Sfera Vita (Life Orb)</span>
             </div>
             <div class="moves-grid">
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/14.png" class="type-icon" alt="Psichico"> <img src="special.png" class="type-tag"> <span>Psichico</span> <span class="pp">16 PP</span></div>
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/15.png" class="type-icon" alt="Ghiaccio"> <img src="special.png" class="type-tag"> <span>Geloraggio</span> <span class="pp">16 PP</span></div>
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/13.png" class="type-icon" alt="Elettro"> <img src="special.png" class="type-tag"> <span>Fulmine</span> <span class="pp">24 PP</span></div>
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/11.png" class="type-icon" alt="Acqua"> <img src="special.png" class="type-tag"> <span>Surf</span> <span class="pp">24 PP</span></div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/14.png" class="type-icon" alt="Psichico"> <img src="special.png" class="type-tag"> <span>Psichico</span> <span class="pp">16 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Psichico</div>
+                    <div class="data-content"><p>MT 29. Ottenuta in Smeraldo (Casinò/Via Vittoria) e duplicata col glitch. Metodo più veloce: Clonazione.</p></div>
+                </div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/15.png" class="type-icon" alt="Ghiaccio"> <img src="special.png" class="type-tag"> <span>Geloraggio</span> <span class="pp">16 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Geloraggio</div>
+                    <div class="data-content"><p>MT 13. Ottenuta in Smeraldo (Casinò/Relitto) e duplicata col glitch. Metodo più veloce: Clonazione.</p></div>
+                </div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/13.png" class="type-icon" alt="Elettro"> <img src="special.png" class="type-tag"> <span>Fulmine</span> <span class="pp">24 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Fulmine</div>
+                    <div class="data-content"><p>MT 24. Ottenuta in Smeraldo (Centrale Elettrica/Casinò) e duplicata col glitch. Metodo più veloce: Clonazione.</p></div>
+                </div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/11.png" class="type-icon" alt="Acqua"> <img src="special.png" class="type-tag"> <span>Surf</span> <span class="pp">24 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Surf</div>
+                    <div class="data-content"><p>MN 03. Si ottiene durante la storia a Amarantopoli (Ecruteak City) dopo aver battuto le Kimono Girls.</p></div>
+                </div>
             </div>
             <div class="chart-container">
                 <canvas id="chartStarmie"></canvas>
             </div>
             <div class="stats-grid-container" id="statsStarmie"></div>
+            <div class="recommendation-container">
+                <div class="rec-row">
+                    <span class="rec-label">Natura consigliata</span>
+                    <span class="rec-value">Timida</span>
+                </div>
+                <div class="rec-row">
+                    <span class="rec-label">IV prioritari</span>
+                    <span class="rec-value">Velocità, Atk. Speciale</span>
+                </div>
+            </div>
+            <div class="location-box" data-pokemon="starmie">Dove trovarli?</div>
+            <div class="location-data" style="display: none;">
+                <div class="data-title">Staryu (Pre-evoluzione di Starmie)</div>
+                <div class="data-content">
+                    <p><strong>Gioco:</strong> <span style="color: #4caf50;">Pokémon Smeraldo</span> / <span style="color: #c0c0c0;">Pokémon SoulSilver</span> / Leaf Green</p>
+                    <p class="emerald"><strong style="color: #4caf50;">Luogo Smeraldo:</strong> Alghepoli (Lilycove City) - Coste</p>
+                    <p class="soulsilver"><strong style="color: #c0c0c0;">Luogo SoulSilver:</strong> Fiorpesca (Cherrygrove City), Olivinopoli (Olivine City), Percorso 47.</p>
+                    <p class="emerald"><strong style="color: #4caf50;">Posizione:</strong> Lungo le rive della città, ad esempio di fronte al Centro Commerciale o vicino al molo.</p>
+                    <p class="emerald"><strong style="color: #4caf50;">Requisiti:</strong> Super Amo. Si ottiene a Verdeazzupoli (Mossdeep City) parlando con il pescatore nella casa a nord-est.</p>
+                    <p class="emerald"><strong style="color: #4caf50;">Pietra Idrica Smeraldo:</strong> Necessaria per l'evoluzione. Si trova nel Relitto (Abandoned Ship) o scambiando un Coccio Blu con il Cercatesori sul Percorso 124.</p>
+                    <p class="soulsilver"><strong style="color: #c0c0c0;">Pietra Idrica SoulSilver:</strong> Necessaria per l'evoluzione. Si ottiene dal Nonno di Bill (Percorso 25 a Kanto), come premio alla Gara Pigliamosche (Parco Nazionale) o tramite il numero di telefono del Pescatore Tullio (Percorso 42).</p>
+                </div>
+            </div>
         </div>
 
         <div class="card type-steel">
@@ -85,15 +165,66 @@
                 <span>Fascia Scelta (Choice Band)</span>
             </div>
             <div class="moves-grid">
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/9.png" class="type-icon" alt="Acciaio"> <img src="physical.png" class="type-tag"> <span>Pugnoscarica</span> <span class="pp">48 PP</span></div>
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/14.png" class="type-icon" alt="Psichico"> <img src="physical.png" class="type-tag"> <span>Cozzata Zen</span> <span class="pp">24 PP</span></div>
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/5.png" class="type-icon" alt="Terra"> <img src="physical.png" class="type-tag"> <span>Terremoto</span> <span class="pp">16 PP</span></div>
-                <div class="move-row"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/9.png" class="type-icon" alt="Acciaio"> <img src="physical.png" class="type-tag"> <span>Meteorpugno</span> <span class="pp">16 PP</span></div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/9.png" class="type-icon" alt="Acciaio"> <img src="physical.png" class="type-tag"> <span>Pugnoscarica</span> <span class="pp">48 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Pugnoscarica</div>
+                    <div class="data-content"><p>Livello 1 / Ricordamosse. Essendo una mossa base di Metagross, non la impara salendo di livello dal 50 in poi, ma va "ricordata" a Ebanopoli/Pratopoli.</p></div>
+                </div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/14.png" class="type-icon" alt="Psichico"> <img src="physical.png" class="type-tag"> <span>Cozzata Zen</span> <span class="pp">24 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Cozzata Zen</div>
+                    <div class="data-content"><p>Livello 20 / Ricordamosse. Metang la impara al 20. Se il tuo Metagross è già oltre quel livello, usa il Ricordamosse. Metodo più veloce: 1 Squama Cuore (risparmi i BP del Tutor).</p></div>
+                </div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/5.png" class="type-icon" alt="Terra"> <img src="physical.png" class="type-tag"> <span>Terremoto</span> <span class="pp">16 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Terremoto</div>
+                    <div class="data-content"><p>MT 26. Insegnata in Smeraldo prima del trasferimento (duplicata col glitch).</p></div>
+                </div>
+                <div class="move-row clickable-move"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iv/heartgold-soulsilver/9.png" class="type-icon" alt="Acciaio"> <img src="physical.png" class="type-tag"> <span>Meteorpugno</span> <span class="pp">16 PP</span></div>
+                <div class="move-data" style="display: none;">
+                    <div class="data-title">Meteorpugno</div>
+                    <div class="data-content"><p>Livello 50. Se l'hai cancellata per sbaglio, usa il Ricordamosse.</p></div>
+                </div>
             </div>
             <div class="chart-container">
                 <canvas id="chartMetagross"></canvas>
             </div>
             <div class="stats-grid-container" id="statsMetagross"></div>
+            <div class="recommendation-container">
+                <div class="rec-row">
+                    <span class="rec-label">Natura consigliata</span>
+                    <span class="rec-value">Decisa</span>
+                </div>
+                <div class="rec-row">
+                    <span class="rec-label">IV prioritari</span>
+                    <span class="rec-value">Attacco, HP</span>
+                </div>
+            </div>
+            <div class="location-box" data-pokemon="metagross">Dove trovarli?</div>
+            <div class="location-data" style="display: none;">
+                <div class="data-title">Beldum (Pre-evoluzione di Metagross)</div>
+                <div class="data-content">
+                    <p><strong>Gioco:</strong> <span style="color: #4caf50;">Pokémon Smeraldo</span> / <span style="color: #A0C0D0;">Pokémon Platino</span> / <span style="color: #c0c0c0;">Pokémon SoulSilver</span></p>
+                    <p class="emerald"><strong style="color: #4caf50;">Luogo Smeraldo:</strong> Verdeazzupoli (Mossdeep City) - Casa di Rocco (Steven).</p>
+                    <p class="platinum"><strong style="color: #A0C0D0;">Luogo Platino:</strong> Percorso 228 (Route 228).</p>
+                    <p class="soulsilver"><strong style="color: #c0c0c0;">Luogo SoulSilver:</strong> Zafferanopoli (Saffron City) - Edificio Silph Co.</p>
+                    <p class="emerald"><strong style="color: #4caf50;">Posizione Smeraldo:</strong> Poké Ball lasciata sul tavolo all'interno della casa di Rocco (a nord-ovest del Centro Pokémon).</p>
+                    <p class="platinum"><strong style="color: #A0C0D0;">Posizione Platino:</strong> Nell'erba alta durante una tempesta di sabbia, ma solo se è attivo lo Sciame (Swarm) del giorno.</p>
+                    <p class="soulsilver"><strong style="color: #c0c0c0;">Posizione SoulSilver:</strong> Si riceve in regalo da Rocco che si trova nell'atrio dell'edificio Silph Co.</p>
+                    <p class="emerald"><strong style="color: #4caf50;">Requisiti Smeraldo:</strong> Aver sconfitto i Superquattro e il Campione della Lega Pokémon.</p>
+                    <p class="platinum"><strong style="color: #A0C0D0;">Requisiti Platino:</strong> Pokédex Nazionale. Bisogna controllare la TV o parlare con la sorella di Lucas/Lucinda per attivare lo Sciame.</p>
+                    <p class="soulsilver"><strong style="color: #c0c0c0;">Requisiti SoulSilver:</strong> Aver sconfitto Rosso sul Monte Argento. È necessario offrire a Rocco un Forretress in cambio del suo Beldum.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale per le location -->
+    <div id="locationModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <div id="modalBody" class="modal-body"></div>
         </div>
     </div>
 

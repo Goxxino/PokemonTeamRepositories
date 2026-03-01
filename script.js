@@ -180,3 +180,53 @@ draw('chartMetagross', [
     { value: 106, iv: 12 }, { value: 104, iv: 19 }, { value: 75, iv: 0 }
 ], '#00f2ff', 'furba', metagrossEVs);
 renderStatsTable('statsMetagross', metagrossIVs, metagrossEVs, '#00f2ff');
+
+// --- GESTIONE MODALE "DOVE TROVARLI?" ---
+
+const modal = document.getElementById('locationModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalBody = document.getElementById('modalBody');
+const closeModalBtn = document.querySelector('.modal-close');
+const locationBoxes = document.querySelectorAll('.location-box');
+const moveRows = document.querySelectorAll('.clickable-move');
+
+const closeModal = () => {
+    modal.classList.remove('show');
+};
+
+locationBoxes.forEach(box => {
+    box.addEventListener('click', () => {
+        // Trova il div nascosto con i dati (è il fratello successivo nel DOM)
+        const dataDiv = box.nextElementSibling;
+        if (dataDiv && dataDiv.classList.contains('location-data')) {
+            const title = dataDiv.querySelector('.data-title').innerHTML;
+            const content = dataDiv.querySelector('.data-content').innerHTML;
+            
+            modalTitle.innerHTML = title;
+            modalBody.innerHTML = content;
+            modal.classList.add('show');
+        }
+    });
+});
+
+moveRows.forEach(row => {
+    row.addEventListener('click', () => {
+        const dataDiv = row.nextElementSibling;
+        if (dataDiv && dataDiv.classList.contains('move-data')) {
+            const title = dataDiv.querySelector('.data-title').innerHTML;
+            const content = dataDiv.querySelector('.data-content').innerHTML;
+            
+            modalTitle.innerHTML = title;
+            modalBody.innerHTML = content;
+            modal.classList.add('show');
+        }
+    });
+});
+
+closeModalBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+});
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+});
