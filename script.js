@@ -1,49 +1,32 @@
 // Registra il plugin per mostrare i valori sulle barre
 Chart.register(ChartDataLabels);
 
-// Definizione delle nature e le statistiche che modificano
-const natures = {
-    // Nature neutre
-    'ardita': { increased: null, decreased: null },
-    'docile': { increased: null, decreased: null },
-    'ritrosa': { increased: null, decreased: null },
-    'furba': { increased: null, decreased: null },
-    'seria': { increased: null, decreased: null },
+// Configurazione Globale (Tema e Costanti)
+const THEME = {
+    font: "'Montserrat', sans-serif",
+    colorTextMuted: '#aaa',
+    colorUp: '#ff5555',   // Rosso per stat aumentata
+    colorDown: '#5588ff', // Blu per stat diminuita
+    colorNeutral: '#fff'
+};
+
+const STAT_LABELS = ['HP', 'ATK', 'DEF', 'SPA', 'SPD', 'SPE'];
+
+// Mappa Nature: Indici (0:HP, 1:ATK, 2:DEF, 3:SPA, 4:SPD, 5:SPE)
+const NATURES = {
+    'ardita': { up: null, down: null }, 'docile': { up: null, down: null },
+    'ritrosa': { up: null, down: null }, 'furba': { up: null, down: null }, 'seria': { up: null, down: null },
     
-    // +ATK
-    'schiva': { increased: 1, decreased: 2 }, // ATK +, DEF -
-    'decisa': { increased: 1, decreased: 3 }, // ATK +, SPA -
-    'birbona': { increased: 1, decreased: 4 }, // ATK +, SPD -
-    'audace': { increased: 1, decreased: 5 }, // ATK +, SPE -
-    
-    // +DEF
-    'sicura': { increased: 2, decreased: 1 }, // DEF +, ATK -
-    'scaltra': { increased: 2, decreased: 3 }, // DEF +, SPA -
-    'fiacca': { increased: 2, decreased: 4 }, // DEF +, SPD -
-    'placida': { increased: 2, decreased: 5 }, // DEF +, SPE -
-    
-    // +SPA
-    'modesta': { increased: 3, decreased: 1 }, // SPA +, ATK -
-    'mite': { increased: 3, decreased: 2 }, // SPA +, DEF -
-    'ardente': { increased: 3, decreased: 4 }, // SPA +, SPD -
-    'quieta': { increased: 3, decreased: 5 }, // SPA +, SPE -
-    
-    // +SPD
-    'calma': { increased: 4, decreased: 1 }, // SPD +, ATK -
-    'gentile': { increased: 4, decreased: 2 }, // SPD +, DEF -
-    'cauta': { increased: 4, decreased: 3 }, // SPD +, SPA -
-    'vivace': { increased: 4, decreased: 5 }, // SPD +, SPE -
-    
-    // +SPE
-    'timida': { increased: 5, decreased: 1 }, // SPE +, ATK -
-    'lesta': { increased: 5, decreased: 2 }, // SPE +, DEF -
-    'allegra': { increased: 5, decreased: 3 }, // SPE +, SPA -
-    'ingenua': { increased: 5, decreased: 4 } // SPE +, SPD -
+    'schiva': { up: 1, down: 2 }, 'decisa': { up: 1, down: 3 }, 'birbona': { up: 1, down: 4 }, 'audace': { up: 1, down: 5 },
+    'sicura': { up: 2, down: 1 }, 'scaltra': { up: 2, down: 3 }, 'fiacca': { up: 2, down: 4 }, 'placida': { up: 2, down: 5 },
+    'modesta': { up: 3, down: 1 }, 'mite': { up: 3, down: 2 }, 'ardente': { up: 3, down: 4 }, 'quieta': { up: 3, down: 5 },
+    'calma': { up: 4, down: 1 }, 'gentile': { up: 4, down: 2 }, 'cauta': { up: 4, down: 3 }, 'vivace': { up: 4, down: 5 },
+    'timida': { up: 5, down: 1 }, 'lesta': { up: 5, down: 2 }, 'allegra': { up: 5, down: 3 }, 'ingenua': { up: 5, down: 4 }
 };
 
 // Funzione per creare opzioni di chart personalizzate in base alla natura
 const getChartOptions = (nature) => {
-    const natureData = natures[nature];
+    const natureData = NATURES[nature];
     
     return {
         indexAxis: 'y',
@@ -55,9 +38,9 @@ const getChartOptions = (nature) => {
             y: {
                 grid: { display: false },
                 ticks: {
-                    color: '#999', // Colore più morbido
+                    color: THEME.colorTextMuted,
                     font: {
-                        family: "'Montserrat', sans-serif", // Font più moderna
+                        family: THEME.font,
                         size: 11,
                         weight: '600'
                     }
@@ -81,9 +64,9 @@ const getChartOptions = (nature) => {
             datalabels: {
                 color: (context) => {
                     const idx = context.dataIndex;
-                    if (idx === natureData.increased) return '#ff5555';
-                    if (idx === natureData.decreased) return '#5588ff';
-                    return '#fff';
+                    if (idx === natureData.up) return THEME.colorUp;
+                    if (idx === natureData.down) return THEME.colorDown;
+                    return THEME.colorNeutral;
                 },
                 anchor: 'end',
                 align: 'right',
@@ -103,21 +86,20 @@ const getChartOptions = (nature) => {
     };
 };
 
-const draw = (id, stats, color, nature, evs) => {
-    const statLabels = ['HP', 'ATK', 'DEF', 'SPA', 'SPD', 'SPE'];
-    // estraiamo solo i valori per disegnare le barre
-    const values = stats.map(s => s.value);
-    const ivs = stats.map(s => s.iv);
-    // evs è già un array di numeri
+// Funzione generica per disegnare il grafico
+const drawChart = (elementId, data, color, nature) => {
+    const canvas = document.getElementById(elementId);
+    const existingChart = Chart.getChart(canvas);
+    if (existingChart) existingChart.destroy();
 
-    new Chart(document.getElementById(id), {
+    new Chart(canvas, {
         type: 'bar',
         data: {
-            labels: statLabels,
+            labels: STAT_LABELS,
             datasets: [{
-                data: values,
-                ivs: ivs,
-                evs: evs,
+                data: data.stats,
+                ivs: data.ivs,
+                evs: data.evs,
                 backgroundColor: color + 'cc', // Leggera trasparenza
                 barThickness: 8, // Barre più sottili = più eleganza
             }]
@@ -127,8 +109,7 @@ const draw = (id, stats, color, nature, evs) => {
 };
 
 // Render IV/EV statistics as HTML grid table
-const renderStatsTable = (containerId, ivs, evs, color) => {
-    const labels = ['HP', 'ATK', 'DEF', 'SPA', 'SPD', 'SPE'];
+const renderStatsTable = (containerId, { ivs, evs }, color) => {
     const container = document.getElementById(containerId);
     
     const gridHTML = `
@@ -138,7 +119,7 @@ const renderStatsTable = (containerId, ivs, evs, color) => {
                 <div>IV</div>
                 <div>EV</div>
             </div>
-            ${labels.map((label, i) => `
+            ${STAT_LABELS.map((label, i) => `
                 <div class="stats-grid-row">
                     <div class="stats-grid-cell label">${label}</div>
                     <div class="stats-grid-cell iv">${ivs[i]}</div>
@@ -156,77 +137,51 @@ const renderStatsTable = (containerId, ivs, evs, color) => {
     container.innerHTML = gridHTML;
 };
 
-// chiamate per ciascun Pokémon
-const garchompIVs = [24, 29, 5, 16, 18, 31];
-const garchompEVs = [6, 163, 20, 34, 16, 106];
-draw('chartGarchomp', [
-    { value: 184, iv: 24 }, { value: 182, iv: 29 }, { value: 115, iv: 5 },
-    { value: 90, iv: 16 }, { value: 105, iv: 18 }, { value: 169, iv: 31 }
-], '#ff4d4d', 'allegra', garchompEVs);
-renderStatsTable('statsGarchomp', garchompIVs, garchompEVs, '#ff4d4d');
+// --- CARICAMENTO DATI (JSON Esterno) ---
+fetch('team-data.json')
+    .then(response => response.json())
+    .then(teamData => {
+        // Inizializzazione Loop
+        teamData.forEach(pokemon => {
+            drawChart(`chart${pokemon.id}`, pokemon, pokemon.color, pokemon.nature);
+            renderStatsTable(`stats${pokemon.id}`, pokemon, pokemon.color);
+        });
+    })
+    .catch(error => console.error('Errore nel caricamento dei dati:', error));
 
-const starmieIVs = [6, 30, 31, 25, 30, 26];
-const starmieEVs = [0, 0, 0, 255, 0, 255];
-draw('chartStarmie', [
-    { value: 114, iv: 6 }, { value: 68, iv: 30 }, { value: 101, iv: 31 },
-    { value: 164, iv: 25 }, { value: 105, iv: 30 }, { value: 133, iv: 26 }
-], '#44ddff', 'timida', starmieEVs);
-renderStatsTable('statsStarmie', starmieIVs, starmieEVs, '#44ddff');
-
-const metagrossIVs = [25, 31, 24, 12, 19, 0];
-const metagrossEVs = [255, 255, 0, 0, 0, 0];
-draw('chartMetagross', [
-    { value: 184, iv: 25 }, { value: 187, iv: 31 }, { value: 147, iv: 24 },
-    { value: 106, iv: 12 }, { value: 104, iv: 19 }, { value: 75, iv: 0 }
-], '#00f2ff', 'furba', metagrossEVs);
-renderStatsTable('statsMetagross', metagrossIVs, metagrossEVs, '#00f2ff');
-
-// --- GESTIONE MODALE "DOVE TROVARLI?" ---
-
+// --- GESTIONE MODALE OTTIMIZZATA (Event Delegation) ---
 const modal = document.getElementById('locationModal');
 const modalTitle = document.getElementById('modalTitle');
 const modalBody = document.getElementById('modalBody');
-const closeModalBtn = document.querySelector('.modal-close');
-const locationBoxes = document.querySelectorAll('.location-box');
-const moveRows = document.querySelectorAll('.clickable-move');
 
-const closeModal = () => {
-    modal.classList.remove('show');
+const openModal = (title, content) => {
+    modalTitle.innerHTML = title;
+    modalBody.innerHTML = content;
+    modal.classList.add('show');
 };
 
-locationBoxes.forEach(box => {
-    box.addEventListener('click', () => {
-        // Trova il div nascosto con i dati (è il fratello successivo nel DOM)
-        const dataDiv = box.nextElementSibling;
-        if (dataDiv && dataDiv.classList.contains('location-data')) {
+const closeModal = () => modal.classList.remove('show');
+
+// UN SOLO event listener per TUTTI i click sulla pagina
+document.body.addEventListener('click', (e) => {
+    // 1. Chiusura modale (click su "X" o fuori dal contenuto)
+    if (e.target.closest('.modal-close') || e.target === modal) {
+        closeModal();
+    }
+    
+    // 2. Apertura modale da un elemento cliccabile (.clickable-move o .location-box)
+    const trigger = e.target.closest('.clickable-move, .location-box');
+    if (trigger) {
+        const dataDiv = trigger.nextElementSibling;
+        if (dataDiv && (dataDiv.classList.contains('move-data') || dataDiv.classList.contains('location-data'))) {
             const title = dataDiv.querySelector('.data-title').innerHTML;
             const content = dataDiv.querySelector('.data-content').innerHTML;
-            
-            modalTitle.innerHTML = title;
-            modalBody.innerHTML = content;
-            modal.classList.add('show');
+            openModal(title, content);
         }
-    });
+    }
 });
 
-moveRows.forEach(row => {
-    row.addEventListener('click', () => {
-        const dataDiv = row.nextElementSibling;
-        if (dataDiv && dataDiv.classList.contains('move-data')) {
-            const title = dataDiv.querySelector('.data-title').innerHTML;
-            const content = dataDiv.querySelector('.data-content').innerHTML;
-            
-            modalTitle.innerHTML = title;
-            modalBody.innerHTML = content;
-            modal.classList.add('show');
-        }
-    });
-});
-
-closeModalBtn.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-});
+// Chiusura con tasto Esc
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
 });
