@@ -1,7 +1,7 @@
 :root {
     --accent-color: #ffcb05;
-    --accent-glow: rgba(255, 203, 5, 0.3);
-    --accent-glow-strong: rgba(255, 203, 5, 0.6);
+    --accent-glow: rgba(255, 203, 5, 0.2);   /* Glow ridotto */
+    --accent-glow-strong: rgba(255, 203, 5, 0.4); /* Glow forte ridotto */
     --border-light: rgba(255, 255, 255, 0.1);
     --bg-light: rgba(255, 255, 255, 0.03);
     --font-pixel: 'Press Start 2P', cursive;
@@ -49,7 +49,7 @@ h1 {
     border-bottom: 2px solid transparent;
     border-image: linear-gradient(to right, #0d0d0d, var(--accent-color), var(--color-secondary), #0d0d0d) 1;
     padding-bottom: 10px;
-    text-shadow: 0 0 10px var(--accent-glow);
+    text-shadow: 0 0 6px var(--accent-glow); /* Glow più stretto */
 }
 
 .intro-text {
@@ -71,7 +71,7 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 4px;
     margin: 40px 0 20px;
-    text-shadow: 0 0 10px var(--accent-glow);
+    text-shadow: 0 0 6px var(--accent-glow); /* Glow più stretto */
     font-size: 1.5rem;
 }
 
@@ -98,6 +98,9 @@ h1 {
 /* Utility Glassmorphism Centralizzata */
 .card, .modal-content, .stats-grid-container, .recommendation-container, .location-box {
     backdrop-filter: blur(10px); /* Effetto vetro smerigliato */
+}
+
+.card, .modal-content {
     border: 1px solid var(--border-light); /* Bordo sottile semitrasparente */
 }
 
@@ -168,7 +171,7 @@ h1 {
     font-weight: bold;
     color: var(--accent-color);
     letter-spacing: 2px;
-    text-shadow: 0 0 8px var(--accent-glow-strong); /* Testo Neon */
+    text-shadow: 0 0 5px var(--accent-glow-strong); /* Testo Neon ridotto */
 }
 
 .ability, .nature, .held-item {
@@ -309,14 +312,13 @@ h1 {
 
 .stats-grid-header > div {
     padding: 8px;
-    background: rgba(255,255,255,0.08);
     font-family: var(--font-pixel); /* Font pixelato */
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--accent-color);
-    text-shadow: 0 0 5px rgba(255, 203, 5, 0.4);
+    text-shadow: 0 0 4px rgba(255, 203, 5, 0.3);
     text-align: center;
 }
 
@@ -465,7 +467,7 @@ h1 {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--accent-color);
-    text-shadow: 0 0 8px var(--accent-glow-strong);
+    text-shadow: 0 0 5px var(--accent-glow-strong); /* Glow ridotto */
     margin-bottom: 20px;
     text-align: center;
 }

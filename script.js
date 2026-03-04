@@ -41,7 +41,7 @@ const getChartOptions = (nature) => {
                     color: THEME.colorTextMuted,
                     font: {
                         family: THEME.font,
-                        size: 11,
+                        size: 13,
                         weight: '600'
                     }
                 }
@@ -71,7 +71,7 @@ const getChartOptions = (nature) => {
                 anchor: 'end',
                 align: 'right',
                 offset: 5,
-                font: { size: 11, weight: 'bold' }
+                font: { size: 13, weight: 'bold' }
             }
         },
         responsive: true,
